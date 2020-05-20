@@ -6,7 +6,7 @@
 */
 
 
-var api_key = "AIzaSyByCCQQGVOYjE-Ecg-Yq4rXOA27fopyahg"
+var api_key = "AIzaSyAESVpO4MezLK49T34nCII89tY6Bz5dW74"
 
 // Extracts the actual urls from the Google API results
 extract_links = function(search_results){
@@ -30,10 +30,12 @@ goog = function(t){
                      'alt':  'json',
                      'q':  t,
                      'searchType': 'image',
+                     'imgType': 'animated',
                      'filter': '1', // removes duplicates?
                      'start': '1', // starting image for search (can only return 10 at a time)
                   }),
             jsonp: "$callback",
+            beforeSend: function(xhr){xhr.setRequestHeader('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Cafari/537.36');},
             success: function( e, data ) {  
               console.log("google search success for "+ t +"!");
             } 
@@ -57,10 +59,12 @@ cluster_google_search = function(cluster_title){
                  'alt':  'json',
                  'q':  cluster_word,
                  'searchType': 'image',
+                 'imgType': 'animated',
                  'filter': '1', // removes duplicates?
                  'start': '1', // starting image for search (can only return 10 at a time)
               }),
         jsonp: "$callback",
+        beforeSend: function(xhr){xhr.setRequestHeader('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Cafari/537.36');},
         success: function( e, data ) {  
           console.log(i)
           responses.push(e);
@@ -76,10 +80,12 @@ cluster_google_search = function(cluster_title){
                  'alt':  'json',
                  'q':  concept_searched + " " + cluster_word,
                  'searchType': 'image',
+                 'imgType': 'animated',
                  'filter': '1', // removes duplicates?
                  'start': '1', // starting image for search (can only return 10 at a time)
               }),
         jsonp: "$callback",
+        beforeSend: function(xhr){xhr.setRequestHeader('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Cafari/537.36');},
         success: function( e, data ) {  
           console.log(i)
           responses.push(e);
@@ -244,10 +250,12 @@ google_all_clusters = function(clusters){
                      'alt':  'json',
                      'q':  concept_searched + " " +  cluster_word,
                      'searchType': 'image',
+                     'imgType': 'animated',
                      'filter': '1', // removes duplicates?
                      'start': '1', // starting image for search (can only return 10 at a time)
                   }),
             jsonp: "$callback",
+            beforeSend: function(xhr){xhr.setRequestHeader('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Cafari/537.36');},
             success: function( e, data ) {  
               console.log(i)
               responses.push(e);
@@ -317,10 +325,12 @@ root_google_search = function(term,term_image_grid,padding_div,main_div){
                      'alt':  'json',
                      'q':  term,
                      'searchType': 'image',
+                     'imgType': 'animated',
                      'filter': '1', // removes duplicates?
                      'start': '1', // starting image for search (can only return 10 at a time)
                   }),
             jsonp: "$callback",
+            beforeSend: function(xhr){xhr.setRequestHeader('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Cafari/537.36');},
             success: function( e, data ) {  
               urls = extract_links(e);
               // var url_obj = {};
@@ -354,9 +364,11 @@ google_search = function(term,is_start,tree_click){
                      'alt':  'json',
                      'q':  term,
                      'searchType': 'image',
+                     'imgType': 'animated',
                      'filter': '1', // removes duplicates?
                      'start': '1', // starting image for search (can only return 10 at a time)
                   }),
+            beforeSend: function(xhr){xhr.setRequestHeader('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Cafari/537.36');},
             jsonp: "$callback",
             success: function( e, data ) {  
               urls = extract_links(e);
