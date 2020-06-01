@@ -30,7 +30,7 @@ goog = function(t){
                      'alt':  'json',
                      'q':  t,
                      'searchType': 'image',
-                     'imgType': 'animated',
+                     'imgType': ['animated', 'photo'],
                      'filter': '1', // removes duplicates?
                      'start': '1', // starting image for search (can only return 10 at a time)
                   }),
@@ -50,6 +50,14 @@ cluster_google_search = function(cluster_title){
   var order = [];
   for(var i = 0; i < cluster_words.length; i++){
     var cluster_word = cluster_words[i];
+    var imageType;
+    if (i % 2 == 0){
+      imageType = 'animated';
+    }
+    else{
+      imageType = 'photo';
+    }
+    console.log(imageType);
     async_request.push($.ajax({
         type: "GET",
         dataType: 'JSON', 
@@ -59,7 +67,7 @@ cluster_google_search = function(cluster_title){
                  'alt':  'json',
                  'q':  cluster_word,
                  'searchType': 'image',
-                 'imgType': 'animated',
+                 'imgType': imageType,
                  'filter': '1', // removes duplicates?
                  'start': '1', // starting image for search (can only return 10 at a time)
               }),
@@ -80,7 +88,7 @@ cluster_google_search = function(cluster_title){
                  'alt':  'json',
                  'q':  concept_searched + " " + cluster_word,
                  'searchType': 'image',
-                 'imgType': 'animated',
+                 'imgType': imageType,
                  'filter': '1', // removes duplicates?
                  'start': '1', // starting image for search (can only return 10 at a time)
               }),
@@ -217,6 +225,7 @@ google_all_clusters = function(clusters){
 
 
 google_all_clusters = function(clusters){
+  console.log("google all clusters");
   // var api_key = "";
   var async_request=[];
   var responses=[];
@@ -241,6 +250,13 @@ google_all_clusters = function(clusters){
 
     for(var j = 0; j < cluster_words.length; j++){
         var cluster_word = cluster_words[j];
+        var imageType;
+        if (j % 2 == 0){
+            imageType = 'animated';
+        } 
+        else{
+            imageType = 'photo'
+        }
          async_request.push($.ajax({
             type: "GET",
             dataType: 'JSON', 
@@ -250,7 +266,7 @@ google_all_clusters = function(clusters){
                      'alt':  'json',
                      'q':  concept_searched + " " +  cluster_word,
                      'searchType': 'image',
-                     'imgType': 'animated',
+                     'imgType': imageType,
                      'filter': '1', // removes duplicates?
                      'start': '1', // starting image for search (can only return 10 at a time)
                   }),
@@ -325,7 +341,7 @@ root_google_search = function(term,term_image_grid,padding_div,main_div){
                      'alt':  'json',
                      'q':  term,
                      'searchType': 'image',
-                     'imgType': 'animated',
+                     'imgType': ['animated', 'photo'],
                      'filter': '1', // removes duplicates?
                      'start': '1', // starting image for search (can only return 10 at a time)
                   }),
@@ -364,7 +380,7 @@ google_search = function(term,is_start,tree_click){
                      'alt':  'json',
                      'q':  term,
                      'searchType': 'image',
-                     'imgType': 'animated',
+                     'imgType': ['animated', 'photo'],
                      'filter': '1', // removes duplicates?
                      'start': '1', // starting image for search (can only return 10 at a time)
                   }),
